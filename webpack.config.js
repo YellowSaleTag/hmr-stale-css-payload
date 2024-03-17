@@ -80,6 +80,12 @@ export default [
       }),
       new MiniCssExtractPlugin({
         chunkFilename: '[name].[id].css',
+        /*
+         * Change to '[name].[contenthash].css' to break CSS update
+         *
+         * I use [contenthash] for cache busting the CSS in the browser.
+         * Is there an alternative?
+         */
         filename: '[name].css'
       }),
       new ReactRefreshPlugin({
@@ -99,7 +105,6 @@ export default [
     context: __dirname,
     entry: ['./app/targets/library/index-esm.js'],
     output: {
-      assetModuleFilename: '[name].[contenthash][ext]',
       filename: '[name].[contenthash].js',
       globalObject: 'globalThis',
       library: {
